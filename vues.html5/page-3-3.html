@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>TP 3.3 / Diaporama interactif</title>
+		<style>
+			body{
+				font: 1.5em Verdana, Arial, Helvetica, sans-serif;
+			}
+			#diaporama{
+				position: relative;
+				margin: 10px;
+				width: 100px;
+			}
+			#diaporama figure{
+				position: relative; 
+				top: 0;
+				left: 10px;
+				margin: 30px 0;
+				z-index: 1;
+				
+				/* Transformation : mise à l'échelle de 25% */
+				-moz-transform: scale(0.25);
+				-webkit-transform: scale(0.25);
+				-o-transform: scale(0.25);
+				transform: scale(0.25);
+				
+				/* Pour un affichage à l'échelle (les photos ont une taille initiale de 600*450 pixels) */
+				width: 150px;
+				height: 112px;
+				
+				/* Transition linéaire de toutes les propriétées sur une durée de 1 seconde */
+				-moz-transition: all 0.5s linear;
+				-webkit-transition: all 0.5s linear;
+				-o-transition: all 0.5s linear;
+				transition: all 0.5s linear;
+			}
+			
+			#diaporama figure:hover{
+				/* Transformation : mise à l'échelle de 100% */
+				-moz-transform: scale(1);
+				-webkit-transform: scale(1);
+				-o-transform: scale(1);
+				transform: scale(1);
+				
+				/* Positionnement */
+				top: 0;
+				left: 30px;
+				z-index: 100;
+				
+			}
+			
+		</style>
+	</head>
+		<body>
+			<section id="diaporama">
+				<figure class="photo1">
+					<img src="../images-tp-3-3/photo1.jpg" />
+					<figcaption>Photo N°1</figcaption>
+				</figure>
+				<figure class="photo2">
+					<img src="../images-tp-3-3/photo2.jpg" />
+					<figcaption>Photo N°2</figcaption>
+				</figure>
+				<figure class="photo3">
+					<img src="../images-tp-3-3/photo3.jpg" />
+					<figcaption>Photo N°3</figcaption>
+				</figure>
+				<figure class="photo4">
+					<img src="../images-tp-3-3/photo4.jpg" />
+					<figcaption>Photo N°4</figcaption>
+				</figure>
+				<figure class="photo5">
+					<img src="../images-tp-3-3/photo5.jpg" />
+					<figcaption>Photo N°5</figcaption>
+				</figure>
+				<figure class="photo6">
+					<img src="../images-tp-3-3/photo6.jpg" />
+					<figcaption>Photo N°6</figcaption>
+				</figure>
+			</section>
+		</body>
+</html>

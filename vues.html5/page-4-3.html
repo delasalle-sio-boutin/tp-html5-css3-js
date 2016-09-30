@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>TP 4.3 / Formulaire clignotant</title>
+		<style>
+			body{
+				font: 0.8em Verdana, Arial, Helvetica, sans-serif;
+			}
+			#inscription{
+				position: absolute;
+				left: 300px;
+				top: 50px;
+				width: 300px;
+				padding: 10px;
+				border: 1px solid #333;
+				border-radius: 10px;
+				
+				/* animation */
+				-webkit-animation: clignotement ease-in infinite alternate 50ms;
+				-moz-animation: clignotement ease-in infinite alternate 50ms;
+				-o-animation: clignotement ease-in infinite alternate 50ms;
+				animation: clignotement ease-in infinite alternate 50ms;
+			}
+			
+			@-webkit-keyframes clignotement{
+				0% { box-shadow: 0 0 15px red; }
+				100% { box-shadow: 0 0 15px yellow; }
+			}
+			@-moz-keyframes clignotement{
+				0% { box-shadow: 0 0 15px red; }
+				100% { box-shadow: 0 0 15px yellow; }
+			}
+			@-o-keyframes clignotement{
+				0% { box-shadow: 0 0 15px red; }
+				100% { box-shadow: 0 0 15px yellow; }
+			}
+			@keyframes clignotement{
+				0% { box-shadow: 0 0 100px red; }
+				50% { box-shadow: 0 0 100px yellow; }
+				50% { box-shadow: 0 0 100px blue; }
+			}
+			
+		</style>
+		</head>
+	<body>
+		<form id="inscription" method="#" action="#">
+			<p>
+				<label for="txtNom">Votre nom : </label>
+				<input type="text" id="txtNom"/>
+			</p>
+			<p>
+				<label for="txtEmail">Votre eMail : </label>
+				<input type="text" id="txtEmail"/>
+			</p>
+			<p><input type="submit" id="btnEnvoyer" value="Envoyer"/></p>
+		</form>
+	</body>
+</html>
