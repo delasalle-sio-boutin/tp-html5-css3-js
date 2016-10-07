@@ -38,32 +38,58 @@ else {
 				include_once ('page-5-3-vue.php');
 			}
 			else{
-			$sujet = "Modification de votre mot de passe";
-			$message = "Votre mot de passe a été modifié.\n\n";
-			$message .= "Votre nouveau mot de passe est : " .$nouveauMdp;
-			$adresseEmetteur = "delasalle.sio.eleves@gmail.com";
-			// pour l'adresse du destinataire, utilisez votre adresse personnelle
-			$adresseDestinataire = "delasalle.sio.boutin.k@gmail.com";
-		
-			// utilisation d'une expression régulière pour vérifier si c'est une adresse Gmail
-			if (preg_match("#^.+@gmail.com$#", $adresseDestinataire) == true )
-			{	// on commence par enlever les points dans l'adresse gmail car ils ne sont pas pris en compte
-				$adresseDestinataire = str_replace(".","",$adresseDestinataire);
-				// puis on remet le point de "@gmail.com"
-				$adresseDestinataire = str_replace("@gmailcom","@gmail.com", $adresseDestinataire);
+				
+				if(preg_match('/[A-Z]/', $nouveauMdp) == false){
+					// si les données sont incorrectes, réaffichage de la vue avec un message explicatif
+					$message = 'Le nouveau mot de passe doit comporter au moins une majuscule!';
+					$typeMessage = 'avertissement';
+					include_once ('page-5-3-vue.php');
+				}
+				else{
+					if(preg_match('/[a-z]/', $nouveauMdp) == false){
+					// si les données sont incorrectes, réaffichage de la vue avec un message explicatif
+					$message = 'Le nouveau mot de passe doit comporter au moins une minuscule!';
+					$typeMessage = 'avertissement';
+					include_once ('page-5-3-vue.php');
+					}
+					else{
+						if(preg_match('/[0-9]/', $nouveauMdp) == false){
+							// si les données sont incorrectes, réaffichage de la vue avec un message explicatif
+							$message = 'Le nouveau mot de passe doit comporter au moins une lettre!';
+							$typeMessage = 'avertissement';
+							include_once ('page-5-3-vue.php');
+						}
+						else{
+							$sujet = "Modification de votre mot de passe";
+							$message = "Votre mot de passe a été modifié.\n\n";
+							$message .= "Votre nouveau mot de passe est : " .$nouveauMdp;
+							$adresseEmetteur = "delasalle.sio.eleves@gmail.com";
+							// pour l'adresse du destinataire, utilisez votre adresse personnelle
+							$adresseDestinataire = "delasalle.sio.boutin.k@gmail.com";
+								
+							// utilisation d'une expression régulière pour vérifier si c'est une adresse Gmail
+							if (preg_match("#^.+@gmail.com$#", $adresseDestinataire) == true )
+							{	// on commence par enlever les points dans l'adresse gmail car ils ne sont pas pris en compte
+								$adresseDestinataire = str_replace(".","",$adresseDestinataire);
+								// puis on remet le point de "@gmail.com"
+								$adresseDestinataire = str_replace("@gmailcom","@gmail.com", $adresseDestinataire);
+							}
+							// envoi du mail avec la fonction de PHP
+							$ok = mail($adresseDestinataire, $sujet, $message, "From :" . $adresseEmetteur);
+							if ($ok){
+								$message = "Enregistrement effectué.<br> Vous allez recevoir un mail de confirmation.";
+								$typeMessage = "information";
+							}
+							else{
+								$message = "Enregistrement effectué.<br>L'envoi du mail de confirmation a rencontré un problème.";
+								$typeMessage = 'avertissement';
+							}
+							include_once ('page-5-3-vue.php');
+						}
+					}
+				}
+				
 			}
-			// envoi du mail avec la fonction de PHP
-			$ok = mail($adresseDestinataire, $sujet, $message, "From :" . $adresseEmetteur);
-			if ($ok){
-				$message = "Enregistrement effectué.<br> Vous allez recevoir un mail de confirmation.";
-				$typeMessage = "information";
-			}
-			else{
-				$message = "Enregistrement effectué.<br>L'envoi du mail de confirmation a rencontré un problème.";
-				$typeMessage = 'avertissement';
-			}
-			include_once ('page-5-3-vue.php');
-			}			
-		}		
+		}
 	}
 }
